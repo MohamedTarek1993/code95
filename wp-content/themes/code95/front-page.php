@@ -52,24 +52,41 @@ get_header();
 
     <section class="featured_news">
         <div class="col-lg-8 col-12">
+
             <h4 class="main_title"> Featured </h4>
-            <?php
-            /* Start the Loop */
-            $client = new WP_Query(array(
-                'post_type' => 'clients',
-                'orderby' => 'post_id',
-                'posts_per_page' => -1,
-                'order' => 'ASC'
-            ));
-            ?>
+            <div class="row">
+                <?php
+                /* Start the Loop */
+                $featured_post = new WP_Query(array(
+                    'post_type' => 'featured-posts',
+                    'orderby' => 'date',
+                    'posts_per_page' => 2,
+                    'order' => 'ASC'
+                ));
+                if ($featured_post->have_posts()) : //if condition
+                    while ($featured_post->have_posts()) : $featured_post->the_post()
+                ?>
+                        <div class="col-lg-6 col-12">
+                            <div class="card_feature">
+                                <a href="<?php echo  get_the_permalink(); ?>">
+                                    <div class="contrnt">
+                                        <?php echo the_post_thumbnail(); ?>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
 
-
-            <?php
-            wp_reset_query();  //end loop 
-            ?>
+                <?php
+                    endwhile;
+                endif;
+                wp_reset_query();  //end loop 
+                ?>
+            </div>
         </div>
         <div class="col-lg-4 col-12">
-
+            <?php
+            get_sidebar();
+            ?>
         </div>
     </section>
 
