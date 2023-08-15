@@ -161,6 +161,7 @@ function code95_scripts()
 
 	global $base;
 	//style 
+	wp_enqueue_style('bootsrtap-style', $base . 'assets/css/bootstrap.min.css', [], null);
 	wp_enqueue_style('swiper-style', $base . 'assets/css/swiper-bundle.min.css', [], null);
 	wp_enqueue_style('scss-style', $base . 'assets/scss/style.min.css', [], null);
 	wp_enqueue_style('logistic-style', get_stylesheet_uri(), array(), _S_VERSION);
