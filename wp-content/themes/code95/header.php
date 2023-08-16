@@ -25,8 +25,15 @@
 <body <?php body_class(); ?>>
 	<?php wp_body_open();
 	global $base;
+	$banner_link_header =  get_field('link_banner_header');
+	$banner_image_header =  get_field('image_banner_header');
 	?>
-	<nav class="navbar nav-home navbar-expand-lg" id="navbar-home">
+	<div class="header_banner">
+		<a href="<?php echo $banner_link_header  ?>">
+			<img src="  <?php echo $banner_image_header['url']; ?>" alt=" <?php echo $banner_image_header['alt']; ?>" />
+		</a>
+	</div>
+	<nav class="navbar nav-home navbar-expand-lg">
 		<div class="container">
 			<?php
 			if (has_custom_logo()) {

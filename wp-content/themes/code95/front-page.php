@@ -102,11 +102,43 @@ get_header();
         </div>
     </section>
 
-    <section class="egypt_news">
+    <?php
+    /* Start the Loop */
+    $egypt_news = new WP_Query(array(
+        'post_type' => 'post',
+        'orderby' => 'post_id',
+        'posts_per_page' => -1,
+        'order' => 'ASC',
+        'category__in' => array(4)
+    ));
+    ?>
+    <div class="egypt_section" id="client">
         <div class="container">
 
+            <div class="swiper mySwiper-1">
+                <div class="swiper-wrapper">
+                    <?php
+                    if ($egypt_news->have_posts()) : //if condition
+                        while ($egypt_news->have_posts()) : $egypt_news->the_post();  //while ondition
+                            // $client_img = get_field('client_image');
+
+                    ?>
+                            <div class="swiper-slide">
+                                <a href="<?php echo get_the_permalink() ?>"></a>
+                                <div class="img">
+                                    <?php the_post_thumbnail('full'); ?>
+                                </div>
+                            </div>
+                    <?php
+                        endwhile;     //end while condition
+                    endif;       //end if condition
+                    wp_reset_query();  //end loop 
+                    ?>
+
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
     <section class="featured_news">
         <div class="container">
