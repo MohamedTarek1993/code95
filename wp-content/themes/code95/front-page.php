@@ -48,9 +48,11 @@ get_header();
                         }
 
                     ?>
-                        <li>
+                        <li style="position: relative;" >
                             <a href="<?php echo get_permalink($post_item['ID']) ?>">
+                              <div class="img_full" >
                                 <?php echo get_the_post_thumbnail($post_item['ID'], 'full'); ?>
+                                </div>
                                 <h2 class="slider-caption-class"><?php echo $post_item['post_title'] ?></h2>
                                 <p class="category-class"><?php echo $category_name; ?></p>
                             </a>
@@ -85,18 +87,27 @@ get_header();
                             $category_name = 'Uncategorized';
                         }
                     ?>
-                        <li>
+                        <li style="position: relative;margin-bottom: 2%; ">
                             <a href="<?php the_permalink(); ?>">
+                            <div class="img_half" ></div>
                                 <?php the_post_thumbnail('full'); ?>
-                                <h2 class="slider-caption-class"><?php the_title(); ?></h2>
-                                <p class="category-class"><?php echo $category_name; ?></p>
+                                <h2 class="slider-caption-class-half"><?php the_title(); ?></h2>
+                                <span  class="category-class-half"><?php echo $category_name; ?></span>
                             </a>
                         </li>
                     <?php endwhile;
                     wp_reset_postdata(); ?>
                 </div>
                 <div class="col-lg-3 col-12">
-
+                    <?php 
+                    	$banner_link =  get_field('banner_link');
+                        $banner_image =  get_field('banner_image');
+                    ?>
+                    <div class="banner_page">
+                        <a href="<?php echo $banner_link  ?>">
+                            <img src="  <?php echo $banner_image['url']; ?>" alt=" <?php echo $banner_image['alt']; ?>" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,6 +125,7 @@ get_header();
     ?>
     <div class="egypt_section" id="client">
         <div class="container">
+       <h2> Egypt News</h2>
 
             <div class="swiper mySwiper-1">
                 <div class="swiper-wrapper">
@@ -145,7 +157,7 @@ get_header();
             <div class="row">
                 <div class="col-lg-8 col-12">
 
-                    <h4 class="main_title"> Featured </h4>
+                    <h2 class="main_title"> Featured </h2>
                     <div class="row">
                         <?php
                         /* Start the Loop */
@@ -161,7 +173,7 @@ get_header();
                                 <div class="col-lg-6 col-12">
                                     <div class="card_feature">
                                         <a href="<?php echo  get_the_permalink(); ?>">
-                                            <div class="contrnt">
+                                            <div class="content">
                                                 <?php echo the_post_thumbnail(); ?>
                                             </div>
                                         </a>
@@ -191,6 +203,4 @@ get_header();
 
 
 
-<?php
 
-get_footer();
